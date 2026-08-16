@@ -10,7 +10,8 @@ import { SiteFooter } from "@/components/site-footer"
 
 export default function HomePage() {
   return (
-    <>
+    <h1>Hello from California Friends</h1>;
+}
       <SiteHeader />
       <main>
         <HeroSection />
