@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1B2B4B" />
+  <title>California Friends of Veterans — When a veteran needs help, we show up</title>
+  <meta
+    name="description"
+    content="A Sonoma County nonprofit providing emergency grants, food, legal aid, and community for veterans and active-duty military. Volunteer, donate, or partner with us."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --background: #f7f5f0;
+      --foreground: #1b2b4b;
+      --card: #ffffff;
+      --navy: #1b2b4b;
+      --navy-deep: #14213d;
+      --gold: #c8a24a;
+      --gold-soft: #e4cf95;
+      --cream: #f7f5f0;
+      --muted: #5b6273;
+      --border: #e4dfd4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--background);
+    }
+
+    body {
+      font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+      color: var(--foreground);
+      background: var(--background);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: "Source Serif 4", ui-serif, Georgia, serif;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 1.75rem;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.6rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      border: 2px solid transparent;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-gold { background: var(--gold); color: var(--navy-deep); }
+    .btn-gold:hover { background: var(--gold-soft); }
+    .btn-outline { border-color: rgba(255, 255, 255, 0.4); color: #fff; }
+    .btn-outline:hover { background: rgba(255, 255, 255, 0.1); }
+    .btn-navy { background: var(--navy); color: #fff; }
+    .btn-navy:hover { background: var(--navy-deep); box-shadow: 0 12px 30px -12px rgba(27, 43, 75, 0.6); }
+
+    /* Header */
+    header.site {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(247, 245, 240, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 4.5rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+    }
+    .brand-mark {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      background: var(--navy);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-family: "Source Serif 4", serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .brand-name { font-size: 0.95rem; line-height: 1.2; }
+    .brand-name small { display: block; font-weight: 500; font-size: 0.72rem; color: var(--muted); }
+    .nav-links { display: none; gap: 1.75rem; font-size: 0.9rem; font-weight: 500; }
+    .nav-links a { color: var(--muted); transition: color 0.15s ease; }
+    .nav-links a:hover { color: var(--navy); }
+    .nav-cta { display: none; }
+    @media (min-width: 900px) {
+      .nav-links { display: flex; }
+      .nav-cta { display: inline-flex; }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
+    }
+    .hero img.bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(20, 33, 61, 0.94) 0%, rgba(20, 33, 61, 0.72) 45%, rgba(20, 33, 61, 0.25) 100%);
+    }
+    .hero-content { position: relative; max-width: 640px; padding: 5rem 0; }
+    .hero h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); margin: 1.25rem 0; }
+    .hero p { font-size: 1.15rem; color: #e8e6df; max-width: 34rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2.5rem; font-size: 0.85rem; color: #cfd3dc; }
+    .hero-tags span { display: flex; align-items: center; gap: 0.5rem; }
+    .dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--gold); }
+
+    /* Impact band */
+    .impact {
+      background: var(--navy);
+      color: #fff;
+    }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      padding: 3rem 0;
+    }
+    @media (min-width: 720px) { .impact-grid { grid-template-columns: repeat(4, 1fr); } }
+    .stat .num { font-family: "Source Serif 4", serif; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; color: var(--gold); }
+    .stat .label { font-size: 0.85rem; color: #c3c8d4; margin-top: 0.25rem; }
+
+    /* Section shell */
+    section { padding: 5rem 0; }
+    .section-head { max-width: 40rem; margin-bottom: 3rem; }
+    .section-head h2 { font-size: clamp(1.9rem, 3.6vw, 2.6rem); margin: 1rem 0; }
+    .section-head p { color: var(--muted); font-size: 1.05rem; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+    @media (min-width: 900px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+    .about-media { position: relative; }
+    .about-media img { border-radius: 1rem; width: 100%; height: 100%; max-height: 460px; object-fit: cover; box-shadow: 0 30px 60px -30px rgba(20, 33, 61, 0.5); }
+    .about-badge {
+      position: absolute;
+      bottom: -1.25rem;
+      right: -1.25rem;
+      background: var(--gold);
+      color: var(--navy-deep);
+      padding: 1.1rem 1.4rem;
+      border-radius: 0.85rem;
+      max-width: 220px;
+      box-shadow: 0 20px 40px -20px rgba(27, 43, 75, 0.55);
+    }
+    .about-badge strong { font-family: "Source Serif 4", serif; font-size: 1.6rem; display: block; }
+    .about-badge span { font-size: 0.8rem; font-weight: 500; }
+    .about-list { list-style: none; margin-top: 1.75rem; display: grid; gap: 1rem; }
+    .about-list li { display: flex; gap: 0.75rem; align-items: flex-start; }
+    .check {
+      flex: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: rgba(200, 162, 74, 0.18);
+      color: var(--gold);
+      display: grid;
+      place-items: center;
+      font-size: 0.8rem;
+      margin-top: 0.1rem;
+    }
+
+    /* Programs */
+    .programs { background: #fff; }
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    @media (min-width: 620px) { .cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 980px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      overflow: hidden;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px -28px rgba(20, 33, 61, 0.45); }
+    .card-media { position: relative; aspect-ratio: 3 / 2; overflow: hidden; }
+    .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .card:hover .card-media img { transform: scale(1.06); }
+    .card-tag {
+      position: absolute;
+      top: 0.85rem;
+      left: 0.85rem;
+      background: rgba(20, 33, 61, 0.85);
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.7rem;
+      border-radius: 0.4rem;
+    }
+    .card-body { padding: 1.4rem; }
+    .card-body h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .card-body p { font-size: 0.92rem; color: var(--muted); }
+
+    /* Testimonial */
+    .quote {
+      background: var(--navy);
+      color: #fff;
+      text-align: center;
+    }
+    .quote blockquote {
+      font-family: "Source Serif 4", serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      line-height: 1.4;
+      max-width: 48rem;
+      margin: 1.5rem auto;
+    }
+    .quote .mark { font-size: 3rem; color: var(--gold); font-family: "Source Serif 4", serif; line-height: 1; }
+    .quote cite { display: block; font-style: normal; color: var(--gold-soft); font-size: 0.9rem; font-weight: 500; }
+
+    /* Get involved */
+    .involve-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+    @media (min-width: 900px) { .involve-grid { grid-template-columns: 1fr 1fr; } }
+    .involve-media img { border-radius: 1rem; width: 100%; max-height: 480px; object-fit: cover; box-shadow: 0 30px 60px -30px rgba(20, 33, 61, 0.5); }
+    .involve-ways { display: grid; gap: 1rem; margin-top: 1.75rem; }
+    .way {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.1rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      background: #fff;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .way:hover { border-color: var(--gold); box-shadow: 0 16px 34px -22px rgba(200, 162, 74, 0.7); }
+    .way-num { font-family: "Source Serif 4", serif; font-weight: 700; color: var(--gold); font-size: 1.15rem; }
+    .way h3 { font-size: 1.05rem; margin-bottom: 0.2rem; }
+    .way p { font-size: 0.88rem; color: var(--muted); }
+
+    /* Final CTA */
+    .final {
+      position: relative;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+    .final img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .final .overlay { position: absolute; inset: 0; background: linear-gradient(rgba(20, 33, 61, 0.9), rgba(20, 33, 61, 0.9)); }
+    .final .container { position: relative; }
+    .final h2 { font-size: clamp(2rem, 4vw, 3rem); margin: 1rem 0; }
+    .final p { color: #dcdfe6; max-width: 36rem; margin: 0 auto 2rem; font-size: 1.1rem; }
+    .final-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+
+    /* Footer */
+    footer.site {
+      background: var(--navy-deep);
+      color: #c3c8d4;
+      padding: 3.5rem 0 2rem;
+    }
+    .foot-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+    @media (min-width: 720px) { .foot-grid { grid-template-columns: 2fr 1fr 1fr; } }
+    footer.site .brand-name, footer.site .brand-name small { color: #fff; }
+    footer.site p { font-size: 0.9rem; max-width: 22rem; margin-top: 1rem; }
+    .foot-col h4 { color: #fff; font-size: 0.9rem; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem; }
+    .foot-col a { display: block; font-size: 0.9rem; padding: 0.3rem 0; transition: color 0.15s ease; }
+    .foot-col a:hover { color: var(--gold); }
+    .foot-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      font-size: 0.82rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="California Friends of Veterans home">
+        <span class="brand-mark" aria-hidden="true">CFV</span>
+        <span class="brand-name">
+          California Friends
+          <small>of Veterans</small>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#involve">Get Involved</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-navy nav-cta" href="#donate">Donate</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="bg" src="/images/hero-veterans-parade.png" alt="Veterans holding American flags in a small-town Memorial Day parade" />
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">Sonoma County, California</span>
+          <h1 id="hero-title">When a veteran needs help, we show up.</h1>
+          <p>
+            California Friends of Veterans provides emergency grants, food, legal aid, and lasting
+            community for the men and women who served — and for the families who served alongside them.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" href="#donate">Support a Veteran</a>
+            <a class="btn btn-outline" href="#programs">See Our Programs</a>
+          </div>
+          <div class="hero-tags">
+            <span><span class="dot"></span> 100% volunteer-led</span>
+            <span><span class="dot"></span> Local, boots-on-the-ground</span>
+            <span><span class="dot"></span> Every dollar goes to veterans</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact band -->
+    <section class="impact" aria-label="Our impact by the numbers">
+      <div class="container impact-grid">
+        <div class="stat"><div class="num">2,400+</div><div class="label">Veterans served</div></div>
+        <div class="stat"><div class="num">85,000</div><div class="label">Meals distributed</div></div>
+        <div class="stat"><div class="num">$1.2M</div><div class="label">In direct aid</div></div>
+        <div class="stat"><div class="num">15 yrs</div><div class="label">Serving our community</div></div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-media">
+          <img src="/images/about-veterans.png" alt="A volunteer warmly greeting an older military veteran" />
+          <div class="about-badge">
+            <strong>Since 2010</strong>
+            <span>Neighbors helping the veterans next door</span>
+          </div>
+        </div>
+        <div>
+          <span class="eyebrow">Our Mission</span>
+          <h2 id="about-title">No veteran should face hardship alone.</h2>
+          <p style="color: var(--muted); font-size: 1.05rem;">
+            We are a community of veterans, families, and neighbors who believe service doesn&apos;t end
+            when the uniform comes off. We meet veterans where they are — with real help, delivered
+            with dignity and without red tape.
+          </p>
+          <ul class="about-list">
+            <li><span class="check" aria-hidden="true">&#10003;</span> Emergency financial grants for rent, utilities, and repairs</li>
+            <li><span class="check" aria-hidden="true">&#10003;</span> Direct access to caseworkers who navigate the VA for you</li>
+            <li><span class="check" aria-hidden="true">&#10003;</span> A standing community that shows up year-round, not just holidays</li>
+          </ul>
+          <div style="margin-top: 2rem;">
+            <a class="btn btn-navy" href="#involve">Join the Mission</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs -->
+    <section id="programs" class="programs" aria-labelledby="programs-title">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">What We Do</span>
+          <h2 id="programs-title">Programs built around real needs</h2>
+          <p>From a hot meal to a folded flag, our programs cover the practical and the profound — the whole life of a veteran and their family.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-media">
+              <img src="/images/program-food-distribution.png" alt="Volunteers loading boxes of fresh food into a car at a distribution event" />
+              <span class="card-tag">Food Security</span>
+            </div>
+            <div class="card-body">
+              <h3>Food Distribution</h3>
+              <p>Monthly drive-through pantries deliver fresh groceries and staples to veteran households across the county.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media">
+              <img src="/images/program-free-lunches.png" alt="Veterans sharing a warm meal together at long community tables" />
+              <span class="card-tag">Community</span>
+            </div>
+            <div class="card-body">
+              <h3>Free Community Lunches</h3>
+              <p>Weekly shared meals where veterans find a hot plate, familiar faces, and a place to belong.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media">
+              <img src="/images/program-legal-help.png" alt="A caseworker helping an older veteran review paperwork at a desk" />
+              <span class="card-tag">Advocacy</span>
+            </div>
+            <div class="card-body">
+              <h3>Legal &amp; Benefits Help</h3>
+              <p>Free guidance on VA claims, appeals, housing, and paperwork — with caseworkers who fight in your corner.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media">
+              <img src="/images/program-memorial.png" alt="A folded American flag presented at a solemn veterans memorial service" />
+              <span class="card-tag">Honor</span>
+            </div>
+            <div class="card-body">
+              <h3>Memorial Services</h3>
+              <p>Dignified honors and support for families saying goodbye, ensuring no veteran is laid to rest alone.</p>
+            </div>
+          </article>
+          <article class="card">
+            <div class="card-media">
+              <img src="/images/program-wreaths.png" alt="Evergreen wreaths with red bows laid on white military headstones in winter" />
+              <span class="card-tag">Remembrance</span>
+            </div>
+            <div class="card-body">
+              <h3>Wreaths Across America</h3>
+              <p>Each December we lay wreaths on veterans&apos; graves, so their service is remembered by name.</p>
+            </div>
+          </article>
+          <article class="card" style="justify-content: center; text-align: left;">
+            <div class="card-body">
+              <span class="eyebrow">Need help now?</span>
+              <h3 style="margin-top: 0.75rem;">Reach out today</h3>
+              <p>If you or a veteran you love needs support, we&apos;re one call away — no wrong door.</p>
+              <div style="margin-top: 1.25rem;">
+                <a class="btn btn-navy" href="#contact">Get Assistance</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="quote" aria-label="Testimonial">
+      <div class="container">
+        <div class="mark" aria-hidden="true">&ldquo;</div>
+        <blockquote>
+          After I lost my job, CFV kept the lights on and helped me file my VA claim.
+          They didn&apos;t treat me like a case number. They treated me like family.
+        </blockquote>
+        <cite>— James R., U.S. Army veteran</cite>
+      </div>
+    </section>
+
+    <!-- Get involved -->
+    <section id="involve" aria-labelledby="involve-title">
+      <div class="container involve-grid">
+        <div>
+          <span class="eyebrow">Get Involved</span>
+          <h2 id="involve-title">Three ways to make a difference</h2>
+          <p style="color: var(--muted); font-size: 1.05rem;">
+            Whether you give an hour or a hand, you become part of the community that keeps our veterans standing.
+          </p>
+          <div class="involve-ways">
+            <div class="way">
+              <span class="way-num">01</span>
+              <div>
+                <h3>Volunteer</h3>
+                <p>Pack food boxes, drive deliveries, or lend a professional skill. Every shift matters.</p>
+              </div>
+            </div>
+            <div class="way">
+              <span class="way-num">02</span>
+              <div>
+                <h3>Donate</h3>
+                <p>Fund emergency grants and meals. 100% of gifts go directly to veteran services.</p>
+              </div>
+            </div>
+            <div class="way">
+              <span class="way-num">03</span>
+              <div>
+                <h3>Partner</h3>
+                <p>Businesses and civic groups can sponsor programs and host drives year-round.</p>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 2rem;">
+            <a class="btn btn-navy" href="#donate">Become a Volunteer</a>
+          </div>
+        </div>
+        <div class="involve-media">
+          <img src="/images/get-involved-volunteers.png" alt="A cheerful group of volunteers in matching shirts at a community event" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="donate" class="final" aria-labelledby="final-title">
+      <img class="bg" src="/images/hero-veterans-parade.png" alt="" aria-hidden="true" />
+      <div class="overlay"></div>
+      <div class="container" style="padding: 6rem 1.5rem;">
+        <span class="eyebrow" style="justify-content: center;">Stand With Them</span>
+        <h2 id="final-title">Your support brings a veteran home to community.</h2>
+        <p>Give once or give monthly — either way, you put food on a table, a roof overhead, and a friend within reach.</p>
+        <div class="final-actions">
+          <a class="btn btn-gold" href="#donate">Donate Now</a>
+          <a class="btn btn-outline" href="#involve">Volunteer With Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact" class="site">
+    <div class="container">
+      <div class="foot-grid">
+        <div>
+          <a class="brand" href="#top" aria-label="California Friends of Veterans home">
+            <span class="brand-mark" aria-hidden="true">CFV</span>
+            <span class="brand-name" style="color: #fff;">
+              California Friends
+              <small style="color: #9aa2b4;">of Veterans</small>
+            </span>
+          </a>
+          <p>A volunteer-led nonprofit serving veterans and military families across Sonoma County, California.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Explore</h4>
+          <a href="#about">About Us</a>
+          <a href="#programs">Programs</a>
+          <a href="#involve">Get Involved</a>
+          <a href="#donate">Donate</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contact</h4>
+          <a href="tel:+17075550142">(707) 555-0142</a>
+          <a href="mailto:help@cafriendsofvets.org">help@cafriendsofvets.org</a>
+          <a href="#">Santa Rosa, CA</a>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>&copy; 2026 California Friends of Veterans. A 501(c)(3) nonprofit.</span>
+        <span>Made with gratitude for those who served.</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
